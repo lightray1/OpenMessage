@@ -68,16 +68,17 @@ namespace OpenMessage
             {
                 
             }
-            if(jid == "You")
+            String timeNow = DateTime.Now.ToString("hh:mm:ss tt");
+            if (jid == "You")
             {
                 richTextBox1.SelectionColor = Color.Cyan;
-                richTextBox1.AppendText(jid + ": ");
+                richTextBox1.AppendText("["+timeNow + "]" + jid + ": ");
                 richTextBox1.SelectionColor = Color.White;
                 richTextBox1.AppendText(Message + Environment.NewLine);
             } else
             {
                 richTextBox1.SelectionColor = Color.LightGreen;
-                richTextBox1.AppendText(jid + ": ");
+                richTextBox1.AppendText("[" + timeNow + "]" + jid + ": ");
                 richTextBox1.SelectionColor = Color.White;
                 richTextBox1.AppendText(Message + Environment.NewLine);
             }
