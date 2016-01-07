@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Security.Cryptography;
 using System.Threading.Tasks;
 using OTR.Interface;
 namespace OpenMessage
@@ -15,6 +16,23 @@ namespace OpenMessage
         {
             otrSess = new OTRSessionManager(uid);
             otrSess.OnOTREvent += new OTREventHandler(OnEvent);
+        }
+        public string generateSessionID()
+        {
+            String finalID = null;
+            Random rnd = new Random();
+            int firstID = rnd.Next(99999);
+            int secondID = rnd.Next(99);
+            int thirdID = rnd.Next(9999999);
+            Random rand = new Random(Guid.NewGuid().GetHashCode() + firstID + secondID + thirdID);
+            int combID = rand.Next(999999);
+            int combID2 = rand.Next(999999999);
+            byte[] intBytes = BitConverter.GetBytes(combID);
+            Array.Reverse(intBytes);
+            byte[] result = intBytes;
+            encryption newEnc = new encryption();
+            finalID = encryption.ComputeHash(combID2.ToString(), "SHA512", result);
+            return finalID;
         }
         public void OnEvent(object source, OTREventArgs e)
         {

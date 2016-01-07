@@ -146,11 +146,7 @@ namespace OpenMessage
         }
         public void _setNotice(string message)
         {
-            //notifyIcon1.Text = message;
-            
-            notifyIcon1.BalloonTipTitle = "New Message!";
-            notifyIcon1.BalloonTipText = message.Substring(0, Math.Min(message.Length, 50));
-            notifyIcon1.ShowBalloonTip(4000);
+            //Nothing yet, but soon.
         }
         static void OnNewMessage(object sender, S22.Xmpp.Im.MessageEventArgs e)
         {

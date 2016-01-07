@@ -44,16 +44,24 @@ namespace OpenMessage
             textBox1.Select();
 
         }
+        static void msg(String title, String Error)
+        {
+            Form newFrm = new newMsgb(title, Error);
+            newFrm.ShowDialog();
+        }
         public void appendMsg(String jid, String Message)
         {
 
             if (Message.Contains("/*/*OTR_REQUEST*"))
             {
+                //OTR does not work yet, working to get a random session ID first.
                 String[] otrMsg = Message.Split('*');
                 remoteUID = otrMsg[3];
                 //Process the OTR request:
                 otr newOtrSess = new otr();
-                newOtrSess.createSession("");
+                String SessionID = newOtrSess.generateSessionID();
+                //newOtrSess.createSession(SessionID);
+                msg("Status - Conversation - New OTR ID", SessionID);
                 return; //Do NOT process the rest of this function!!!!
             }
             if(ApplicationIsActivated() == false)

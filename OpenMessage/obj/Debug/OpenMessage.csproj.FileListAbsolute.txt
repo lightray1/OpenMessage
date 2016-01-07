@@ -46,4 +46,3 @@ C:\Users\mitchell\Documents\GitHub\OpenMessage\OpenMessage\obj\Debug\OpenMessage
 C:\Users\mitchell\Documents\GitHub\OpenMessage\OpenMessage\obj\Debug\OpenMessage.Properties.Resources.resources
 C:\Users\mitchell\Documents\GitHub\OpenMessage\OpenMessage\obj\Debug\OpenMessage.roster.resources
 C:\Users\mitchell\Documents\GitHub\OpenMessage\OpenMessage\obj\Debug\OpenMessage.csproj.GenerateResource.Cache
-C:\Users\mitchell\Documents\GitHub\OpenMessage\OpenMessage\obj\Debug\OpenMessage.notice.resources
