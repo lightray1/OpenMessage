@@ -7,13 +7,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MonoFlat;
+using System.Runtime.InteropServices;
+using System.Diagnostics;
 
 namespace OpenMessage
 {
     public partial class newMessageFrm : Form
     {
+        [DllImport("user32.dll", CharSet = CharSet.Auto, ExactSpelling = true)]
+        private static extern IntPtr GetForegroundWindow();
 
-       public string serverName;
+        [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        private static extern int GetWindowThreadProcessId(IntPtr handle, out int processId);
+
+
+        public string serverName;
        public String frmId {get; set; }
         String jidFrom;
         public string remoteUID = null;
@@ -24,6 +33,7 @@ namespace OpenMessage
             jidFrom = jid;
             newMessageWindow.Text = "Chat with: " + jid;
             serverName = domain;
+            this.Text = "Chat with: " + jid;
         }
 
         public void sendBtn_Click(object sender, EventArgs e)
@@ -46,6 +56,10 @@ namespace OpenMessage
                 newOtrSess.createSession("");
                 return; //Do NOT process the rest of this function!!!!
             }
+            if(ApplicationIsActivated() == false)
+            {
+                
+            }
             if(jid == "You")
             {
                 richTextBox1.SelectionColor = Color.Cyan;
@@ -63,6 +77,21 @@ namespace OpenMessage
             richTextBox1.ScrollToCaret();
 
         }
+        public static bool ApplicationIsActivated()
+        {
+            var activatedHandle = GetForegroundWindow();
+            if (activatedHandle == IntPtr.Zero)
+            {
+                return false;       // No window is currently activated
+            }
+
+            var procId = Process.GetCurrentProcess().Id;
+            int activeProcId;
+            GetWindowThreadProcessId(activatedHandle, out activeProcId);
+
+            return activeProcId == procId;
+        }
+
         public void _msgText(String jid, String Message)
         {
             appendMsg(jid, Message);
