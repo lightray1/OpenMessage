@@ -14,6 +14,7 @@
 - Custom server setup
 - Easy to use interface
 - Basic roster (Cannot add or delete yet)
+- TLS Support
 
 ### Planned features ###
 
