@@ -220,6 +220,7 @@ namespace OpenMessage
                 notifyIcon1.Visible = true;
                 Hide();
             }
+            Application.Exit();
          }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -292,8 +293,8 @@ namespace OpenMessage
         {
             isHide = false;
             notifyIcon1.Visible = false;
-            Status offline = new Status(Availability.Offline);
-            client.SetStatus(offline);
+            //Status offline = new Status(Availability.Offline);
+            //client.SetStatus(offline);
             client.Close();
             Application.Exit();
         }
