@@ -22,8 +22,7 @@ namespace OpenMessage
                 String intProto = portMaps.Protocol;
                 if(IntPort == port)
                 {
-                    maps.Remove(port, intProto);
-                    break;
+                    port += 1;
                 }
             }
 
