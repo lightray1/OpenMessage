@@ -52,3 +52,4 @@ C:\Users\mitchell\Documents\GitHub\OpenMessage\OpenMessage\obj\Debug\Interop.UPN
 C:\Users\mitchell\Documents\GitHub\OpenMessage\OpenMessage\obj\Debug\OpenMessage.csproj.ResolveComReference.cache
 C:\Users\mitchell\Documents\GitHub\OpenMessage\OpenMessage\bin\Debug\Interop.NATUPNPLib.dll
 C:\Users\mitchell\Documents\GitHub\OpenMessage\OpenMessage\bin\Debug\Interop.UPNPLib.dll
+C:\Users\mitchell\Documents\GitHub\OpenMessage\OpenMessage\obj\Debug\OpenMessage.UPnPTest.resources

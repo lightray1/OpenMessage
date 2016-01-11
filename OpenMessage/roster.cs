@@ -340,5 +340,11 @@ namespace OpenMessage
         {
             msg("Sorry!", "Almost there.... Just a little further....");
         }
+
+        private void testUPnPToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            UPnPTest testU = new UPnPTest();
+            testU.Show();
+        }
     }
 }
