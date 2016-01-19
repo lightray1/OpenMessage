@@ -11,5 +11,8 @@
     <Setting Name="srv" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
+    <Setting Name="notification" Type="System.String" Scope="User">
+      <Value Profile="(Default)">default.mp3</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

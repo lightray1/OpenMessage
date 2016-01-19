@@ -53,3 +53,5 @@ C:\Users\mitchell\Documents\GitHub\OpenMessage\OpenMessage\obj\Debug\OpenMessage
 C:\Users\mitchell\Documents\GitHub\OpenMessage\OpenMessage\bin\Debug\Interop.NATUPNPLib.dll
 C:\Users\mitchell\Documents\GitHub\OpenMessage\OpenMessage\bin\Debug\Interop.UPNPLib.dll
 C:\Users\mitchell\Documents\GitHub\OpenMessage\OpenMessage\obj\Debug\OpenMessage.UPnPTest.resources
+C:\Users\mitchell\Documents\GitHub\OpenMessage\OpenMessage\obj\Debug\Interop.WMPLib.dll
+C:\Users\mitchell\Documents\GitHub\OpenMessage\OpenMessage\obj\Debug\OpenMessage.appOptions.resources

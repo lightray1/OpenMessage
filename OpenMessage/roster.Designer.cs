@@ -55,6 +55,8 @@
             this.addFriendToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.debugToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.testUPnPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.optionsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.contextMenuStrip1.SuspendLayout();
             this.monoFlat_ThemeContainer1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -270,7 +272,9 @@
             // optionsToolStripMenuItem
             // 
             this.optionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.addFriendToolStripMenuItem});
+            this.addFriendToolStripMenuItem,
+            this.toolStripSeparator2,
+            this.optionsToolStripMenuItem1});
             this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
             this.optionsToolStripMenuItem.Size = new System.Drawing.Size(56, 20);
             this.optionsToolStripMenuItem.Text = "Options";
@@ -279,7 +283,7 @@
             // addFriendToolStripMenuItem
             // 
             this.addFriendToolStripMenuItem.Name = "addFriendToolStripMenuItem";
-            this.addFriendToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
+            this.addFriendToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.addFriendToolStripMenuItem.Text = "Add Friend";
             this.addFriendToolStripMenuItem.Click += new System.EventHandler(this.addFriendToolStripMenuItem_Click);
             // 
@@ -294,9 +298,21 @@
             // testUPnPToolStripMenuItem
             // 
             this.testUPnPToolStripMenuItem.Name = "testUPnPToolStripMenuItem";
-            this.testUPnPToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.testUPnPToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
             this.testUPnPToolStripMenuItem.Text = "Test UPnP";
             this.testUPnPToolStripMenuItem.Click += new System.EventHandler(this.testUPnPToolStripMenuItem_Click);
+            // 
+            // optionsToolStripMenuItem1
+            // 
+            this.optionsToolStripMenuItem1.Name = "optionsToolStripMenuItem1";
+            this.optionsToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.optionsToolStripMenuItem1.Text = "Options";
+            this.optionsToolStripMenuItem1.Click += new System.EventHandler(this.optionsToolStripMenuItem1_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(149, 6);
             // 
             // roster
             // 
@@ -348,5 +364,7 @@
         private System.Windows.Forms.ListView friendView;
         private System.Windows.Forms.ToolStripMenuItem debugToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem testUPnPToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem optionsToolStripMenuItem1;
     }
 }

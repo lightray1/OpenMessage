@@ -346,5 +346,11 @@ namespace OpenMessage
             UPnPTest testU = new UPnPTest();
             testU.Show();
         }
+
+        private void optionsToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            appOptions newSet = new appOptions();
+            newSet.ShowDialog();
+        }
     }
 }

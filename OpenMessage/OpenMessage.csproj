@@ -87,6 +87,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="appOptions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="appOptions.Designer.cs">
+      <DependentUpon>appOptions.cs</DependentUpon>
+    </Compile>
     <Compile Include="audioChat.cs" />
     <Compile Include="encryption.cs" />
     <Compile Include="Form1.cs">
@@ -124,6 +130,9 @@
       <DependentUpon>UPnPTest.cs</DependentUpon>
     </Compile>
     <Compile Include="videoChat.cs" />
+    <EmbeddedResource Include="appOptions.resx">
+      <DependentUpon>appOptions.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -211,6 +220,15 @@
       <WrapperTool>tlbimp</WrapperTool>
       <Isolated>False</Isolated>
       <EmbedInteropTypes>False</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="WMPLib">
+      <Guid>{6BF52A50-394A-11D3-B153-00C04F79FAA6}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

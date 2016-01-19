@@ -58,5 +58,17 @@ namespace OpenMessage.Properties {
                 this["srv"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("default.mp3")]
+        public string notification {
+            get {
+                return ((string)(this["notification"]));
+            }
+            set {
+                this["notification"] = value;
+            }
+        }
     }
 }
