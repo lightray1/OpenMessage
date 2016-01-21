@@ -15,14 +15,13 @@
 - Easy to use interface
 - Basic roster (Cannot add or delete yet)
 - TLS Support
+- Basic Notification Support (Flashing taskbar icon and MP3/Wav sound)
 
 ### Planned features ###
 
 - OTR Encryption
 - Group Messaging
-- Notification Sounds, and Visuals
 - PGP Encryption
-- Plugin System
 - Audio/Video Chat
 - UPnP/ICE/STUN 
 - Maybe more?
