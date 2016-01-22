@@ -91,8 +91,15 @@ namespace OpenMessage
                             if(resID != null) { jid.Replace(resID, ""); jid = jid.Replace("@/", ""); }
                             if (jid.Contains("@")) { jid = jid.Replace("@", ""); }
                             jid = jid.Replace(domain2, "");
+                            try
+                            {
+                                friendView.Items.Add(jid, 0);
+                            }
+                            catch
+                            {
+                                //Do Nothing, Move on.
+                            }
                             
-                            //friendView.Items.Add(jid, 0);
                         }
                         Status online = new Status(Availability.Online);
                         client.SetStatus(online);
