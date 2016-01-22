@@ -52,6 +52,7 @@ namespace OpenMessage
                     client.Error += OnError;
                     client.Message += OnNewMessage;
                     client.RosterUpdated += OnRosterUpdate;
+                    client.SubscriptionRequest += OnSubRequest;
                     client.Connect();
                 }
                 
@@ -91,7 +92,7 @@ namespace OpenMessage
                             if (jid.Contains("@")) { jid = jid.Replace("@", ""); }
                             jid = jid.Replace(domain2, "");
                             
-                            friendView.Items.Add(jid, 0);
+                            //friendView.Items.Add(jid, 0);
                         }
                         Status online = new Status(Availability.Online);
                         client.SetStatus(online);
@@ -113,26 +114,93 @@ namespace OpenMessage
             avatarList.Images.Add(Properties.Resources.User);
             //friendView.Items.Add(new ListViewItem(usernameLabel.Text + "(You)", 0));
         }
+        private bool OnSubRequest(Jid from)
+        {
+            return true;
+        }
+        
         private void OnRosterUpdate(Object sender, S22.Xmpp.Im.RosterUpdatedEventArgs e)
         {
-            if(e.Removed == true)
+            String resID = e.Item.Jid.Resource;
+            String domain2 = e.Item.Jid.Domain;
+            String jid = e.Item.Jid.ToString();
+            if (resID != null) { jid.Replace(resID, ""); jid = jid.Replace("@/", ""); }
+            if (jid.Contains("@")) { jid = jid.Replace("@", ""); }
+            jid = jid.Replace(domain2, "");
+            bool isInRoster = false;
+            foreach(ListViewItem tempJid in getListViewItems(friendView))
             {
-                
-                RosterItemsList(e.Item.Name, false);
+                if(tempJid.Text == jid)
+                {
+                    isInRoster = true;
+                }
+            }
+            if(isInRoster == true)
+            {
+                if(e.Removed == true)
+                {
+                    RosterItemsList(jid, e.Removed);
+                }
             } else
             {
-                RosterItemsList(e.Item.Name, true);
+                RosterItemsList(jid, e.Removed);
+            }
+            
+           
+        }
+
+        private delegate ListView.ListViewItemCollection GetItems(ListView lstview);
+
+        private ListView.ListViewItemCollection getListViewItems(ListView lstview)
+        {
+            ListView.ListViewItemCollection temp = new ListView.ListViewItemCollection(new ListView());
+            if (!lstview.InvokeRequired)
+            {
+                foreach (ListViewItem item in lstview.Items)
+                    temp.Add((ListViewItem)item.Clone());
+                return temp;
+            }
+            else
+                return (ListView.ListViewItemCollection)this.Invoke(new GetItems(getListViewItems), new object[] { lstview });
+        }
+        private delegate void InsertIntoListDelegate(string jid);
+        public void InsertIntoList(string jid)
+        {
+            if (InvokeRequired)
+            {
+                Invoke(new InsertIntoListDelegate(InsertIntoList), jid);
+                return;
+            }
+            else
+            {
+                friendView.Items.Add(jid, 0);
+                friendView.Refresh();
             }
         }
-        private void RosterItemsList(String itemName, Boolean adding)
+        private delegate void DeleteListDelegate(string jid);
+        public void DeleteList(string jid)
+        {
+            if (InvokeRequired)
+            {
+                Invoke(new DeleteListDelegate(DeleteList), jid);
+                return;
+            }
+            else
+            {
+                DeleteIfNecessary(jid);
+                friendView.Refresh();
+            }
+        }
+        
+        private void RosterItemsList(String itemName, Boolean removed)
         {
             
-            if(adding == false)
+            if(removed == true)
             {
                 
                 try
                 {
-                    
+                    Task.Factory.StartNew(() => DeleteList(itemName));
                 }
                 catch(Exception ex)
                 {
@@ -141,8 +209,32 @@ namespace OpenMessage
             } else
             {
 
-                //friendView.Items.Add(new ListViewItem(itemName, 0));
+                Task.Factory.StartNew(() => InsertIntoList(itemName));
             }
+        }
+        void DeleteIfNecessary(string message)
+        {
+            ListViewItem listViewItem = FindListViewItemForMessage(message);
+            if (listViewItem == null)
+            {
+                // item doesn't exist
+                return;
+            }
+
+            this.friendView.Items.Remove(listViewItem);
+        }
+
+        private ListViewItem FindListViewItemForMessage(string s)
+        {
+            foreach (ListViewItem lvi in this.friendView.Items)
+            {
+                if (StringComparer.OrdinalIgnoreCase.Compare(lvi.Text, s) == 0)
+                {
+                    return lvi;
+                }
+            }
+
+            return null;
         }
         public void _setNotice(string message)
         {
@@ -233,6 +325,8 @@ namespace OpenMessage
                 if(client.Authenticated == true)
                 {
                     usernameLabel.ForeColor = Color.Green;
+                    //KeepAlive some how...
+                    
 
                 } else
                 {
@@ -338,7 +432,8 @@ namespace OpenMessage
 
         private void addFriendToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            msg("Sorry!", "Almost there.... Just a little further....");
+            AddFriend tempFriend = new AddFriend();
+            tempFriend.ShowDialog();
         }
 
         private void testUPnPToolStripMenuItem_Click(object sender, EventArgs e)
@@ -351,6 +446,30 @@ namespace OpenMessage
         {
             appOptions newSet = new appOptions();
             newSet.ShowDialog();
+        }
+
+        private void removeFriendToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                ListView.SelectedListViewItemCollection selectedItem = friendView.SelectedItems;
+                ListViewItem lsItem = selectedItem[0];
+                String item = lsItem.Text;
+                S22.Xmpp.Jid tempRemove = new S22.Xmpp.Jid(item + "@" + Properties.Settings.Default.srv);
+                try
+                {
+                    client.RemoveContact(tempRemove);
+                }
+                catch (Exception ex)
+                {
+                    msg("Error - Remove Contact - Roster", ex.ToString());
+                }
+            } catch(Exception exa)
+            {
+                msg("Error - Remove Contact - Roster", "You must first select a friend to remove.");
+            }
+            
+            
         }
     }
 }

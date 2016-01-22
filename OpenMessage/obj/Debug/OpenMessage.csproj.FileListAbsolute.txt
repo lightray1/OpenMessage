@@ -55,3 +55,4 @@ C:\Users\mitchell\Documents\GitHub\OpenMessage\OpenMessage\bin\Debug\Interop.UPN
 C:\Users\mitchell\Documents\GitHub\OpenMessage\OpenMessage\obj\Debug\OpenMessage.UPnPTest.resources
 C:\Users\mitchell\Documents\GitHub\OpenMessage\OpenMessage\obj\Debug\Interop.WMPLib.dll
 C:\Users\mitchell\Documents\GitHub\OpenMessage\OpenMessage\obj\Debug\OpenMessage.appOptions.resources
+C:\Users\mitchell\Documents\GitHub\OpenMessage\OpenMessage\obj\Debug\OpenMessage.AddFriend.resources

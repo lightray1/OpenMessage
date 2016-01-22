@@ -22,7 +22,7 @@ namespace OpenMessage
     public partial class Form1 : Form
     {
         String serverName = "urgero.net"; //Server name of XMPP server.
-        String version = "0.0.6N"; //Version String
+        String version = "0.0.7b"; //Version String
         Int32 verInt = 001; //Version String as an Integer
         public static string usr = null;
         public Form1()
